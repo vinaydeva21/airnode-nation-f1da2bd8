@@ -1,3 +1,4 @@
+
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -6,9 +7,41 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NetworkBackground from "@/components/NetworkBackground";
-import { CircleDollarSign, Clock, User } from "lucide-react";
+import { CircleDollarSign, Clock, User, UserX } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner";
 
 const Dashboard = () => {
+  const navigate = useNavigate();
+
+  // Check if user is logged in (mock implementation)
+  const isLoggedIn = localStorage.getItem("userLoggedIn") === "true";
+
+  if (!isLoggedIn) {
+    // Redirect to home page if not logged in
+    setTimeout(() => {
+      navigate("/");
+      toast.error("Please log in to access your dashboard", {
+        description: "You need to be logged in to view your profile"
+      });
+    }, 100);
+    
+    return (
+      <NetworkBackground>
+        <Navbar />
+        <div className="pt-24 pb-20 px-4 min-h-screen flex items-center justify-center">
+          <div className="text-center">
+            <UserX size={48} className="mx-auto mb-4 text-ana-purple" />
+            <h1 className="text-2xl font-bold text-white mb-2">Authentication Required</h1>
+            <p className="text-white/70 mb-6">Please log in to access your dashboard</p>
+            <Button onClick={() => navigate("/")}>Return to Home</Button>
+          </div>
+        </div>
+        <Footer />
+      </NetworkBackground>
+    );
+  }
+
   const userShares = [
     {
       id: "portal-180",
@@ -62,8 +95,8 @@ const Dashboard = () => {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
             <div>
-              <h1 className="text-3xl font-bold text-white">Dashboard</h1>
-              <p className="text-white/70">Welcome back, User</p>
+              <h1 className="text-3xl font-bold text-white">My Profile</h1>
+              <p className="text-white/70">Manage your assets and account</p>
             </div>
             <Button>Claim Rewards</Button>
           </div>
