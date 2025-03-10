@@ -3,6 +3,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import AssetsTab from "./AssetsTab";
 import ActivityTab from "./ActivityTab";
 import PlaceholderTab from "./PlaceholderTab";
+import ProfileSettingsTab from "./ProfileSettingsTab";
 
 interface Asset {
   id: string;
@@ -36,6 +37,7 @@ const DashboardTabs: React.FC<DashboardTabsProps> = ({ userShares, recentActivit
         <TabsTrigger value="activity">Activity</TabsTrigger>
         <TabsTrigger value="rewards">Rewards</TabsTrigger>
         <TabsTrigger value="governance">Governance</TabsTrigger>
+        <TabsTrigger value="profile">Profile Settings</TabsTrigger>
       </TabsList>
       
       {/* Assets Tab */}
@@ -61,6 +63,11 @@ const DashboardTabs: React.FC<DashboardTabsProps> = ({ userShares, recentActivit
           title="Governance Participation" 
           description="Your voting history and active proposals will appear here." 
         />
+      </TabsContent>
+      
+      {/* Profile Settings Tab */}
+      <TabsContent value="profile" className="mt-6">
+        <ProfileSettingsTab />
       </TabsContent>
     </Tabs>
   );
