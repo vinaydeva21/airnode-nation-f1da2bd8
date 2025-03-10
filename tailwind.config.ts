@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,13 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				ana: {
+					purple: '#8c52ff',
+					pink: '#ff5c87',
+					blue: '#5c87ff',
+					darkblue: '#1a1a35',
+					darkpurple: '#2d1a4a',
 				}
 			},
 			borderRadius: {
@@ -84,11 +92,26 @@ export default {
 					to: {
 						height: '0'
 					}
+				},
+				'pulse-slow': {
+					'0%, 100%': { opacity: '1' },
+					'50%': { opacity: '0.7' },
+				},
+				'float': {
+					'0%, 100%': { transform: 'translateY(0)' },
+					'50%': { transform: 'translateY(-10px)' },
 				}
 			},
 			animation: {
 				'accordion-down': 'accordion-down 0.2s ease-out',
-				'accordion-up': 'accordion-up 0.2s ease-out'
+				'accordion-up': 'accordion-up 0.2s ease-out',
+				'pulse-slow': 'pulse-slow 4s ease-in-out infinite',
+				'float': 'float 6s ease-in-out infinite',
+			},
+			backgroundImage: {
+				'network-pattern': "url('/network-bg.png')",
+				'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
+				'gradient-purple': 'linear-gradient(to right, #8c52ff, #ff5c87)',
 			}
 		}
 	},

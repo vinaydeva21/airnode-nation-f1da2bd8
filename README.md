@@ -1,58 +1,20 @@
-# Welcome to your Lovable project
 
-## Project info
+# AirNode Alliance
 
-**URL**: https://lovable.dev/projects/3025c814-1127-491c-91d3-760e3be6b60b
+## About
 
-## How can I edit this code?
+The AirNode Alliance (ANA), developed by ELOC Mobile Solutions, aims to democratize access to telecommunications infrastructure by enabling fractional ownership of AirNodes through NFTs. This initiative leverages blockchain technology (World Mobile Chain - WMC) to create a decentralized ecosystem where individuals can own and earn from telecom infrastructure while participating in governance decisions.
 
-There are several ways of editing your application.
+## Key Features
 
-**Use Lovable**
+- **Fractionalized AirNode Ownership (NFTs)** – AirNodes are divided into fractional shares via NFTs, allowing affordable participation and reward generation.
+- **Decentralized Autonomous Organization (DAO)** – Governance is managed by NFT holders, who vote on proposals like reward distribution, new AirNode purchases and treasury management.
+- **Decentralized Application (Dapp)** – A platform for managing NFTs, tracking rewards, voting in governance and withdrawing earnings via smart contracts.
+- **ANA Token** – Used for governance, staking, liquidity incentives and marketplace transactions within the ecosystem.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/3025c814-1127-491c-91d3-760e3be6b60b) and start prompting.
+## Development Setup
 
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with .
+This project is built with:
 
 - Vite
 - TypeScript
@@ -60,10 +22,33 @@ This project is built with .
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+### Running Locally
 
-Simply open [Lovable](https://lovable.dev/projects/3025c814-1127-491c-91d3-760e3be6b60b) and click on Share -> Publish.
+```sh
+# Step 1: Clone the repository
+git clone <REPOSITORY_URL>
 
-## I want to use a custom domain - is that possible?
+# Step 2: Navigate to the project directory
+cd airnode-alliance
 
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+# Step 3: Install dependencies
+npm install
+
+# Step 4: Start the development server
+npm run dev
+```
+
+## Project Structure
+
+- `/src/components` - Reusable UI components
+- `/src/pages` - Main application pages (Home, Marketplace, Dashboard, Governance)
+- `/src/hooks` - Custom React hooks
+- `/src/lib` - Utility functions and helpers
+
+## Deployment
+
+This project can be deployed using the "Share -> Publish" feature in Lovable, or alternatively via Netlify or other hosting platforms.
+
+## License
+
+Copyright © 2023 AirNode Alliance. All rights reserved.
