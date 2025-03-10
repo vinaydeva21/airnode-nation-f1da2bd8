@@ -10,6 +10,7 @@ import {
   DropdownMenuSub,
   DropdownMenuSubTrigger,
   DropdownMenuSubContent,
+  DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 import { Coins, LogOut, ChevronDown, LockKeyhole, ShieldCheck, History } from "lucide-react";
@@ -71,7 +72,7 @@ export const WalletDropdownMenu: React.FC<WalletMenuProps> = ({
           </DropdownMenuItem>
           <DropdownMenuItem className="flex justify-between cursor-default">
             <span className="opacity-70">Voting Power:</span> 
-            <span>3,250</span>
+            <span>{votingPower}</span>
           </DropdownMenuItem>
         </DropdownMenuGroup>
         
