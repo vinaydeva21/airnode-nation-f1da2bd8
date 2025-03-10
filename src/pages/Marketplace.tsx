@@ -99,19 +99,6 @@ const Marketplace = () => {
     }
   ];
 
-  const myAssets = {
-    airNodes: [
-      { name: "Portal 180", shares: 3, value: 135, earnings: 7.2, roi: 18.6 },
-      { name: "Nexus I", shares: 2, value: 150, earnings: 7.2, roi: 22.4 }
-    ],
-    tokens: {
-      ana: 450,
-      anaStaked: 150,
-      usdc: 125.75
-    },
-    totalValue: 860.75
-  };
-
   return (
     <NetworkBackground>
       <Navbar />
@@ -125,7 +112,6 @@ const Marketplace = () => {
             setActiveTab={setActiveTab}
             airNodes={airNodes}
             lendingOptions={lendingOptions}
-            myAssets={myAssets}
             searchQuery={searchQuery}
             setSearchQuery={setSearchQuery}
           />

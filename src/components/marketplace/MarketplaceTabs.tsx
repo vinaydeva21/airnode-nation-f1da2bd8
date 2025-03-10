@@ -1,10 +1,9 @@
 
 import React from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ShoppingCart, Wallet, Coins } from "lucide-react";
+import { ShoppingCart, Wallet } from "lucide-react";
 import { BuyNodesTab } from "./tabs/BuyNodesTab";
 import { DeFiServicesTab } from "./tabs/DeFiServicesTab";
-import { MyAssetsTab } from "./tabs/MyAssetsTab";
 
 interface AirNode {
   id: string;
@@ -31,28 +30,11 @@ interface LendingOption {
   icon: React.ReactNode;
 }
 
-interface MyAssets {
-  airNodes: Array<{
-    name: string;
-    shares: number;
-    value: number;
-    earnings: number;
-    roi: number;
-  }>;
-  tokens: {
-    ana: number;
-    anaStaked: number;
-    usdc: number;
-  };
-  totalValue: number;
-}
-
 interface MarketplaceTabsProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
   airNodes: AirNode[];
   lendingOptions: LendingOption[];
-  myAssets: MyAssets;
   searchQuery: string;
   setSearchQuery: (query: string) => void;
 }
@@ -62,13 +44,12 @@ export const MarketplaceTabs: React.FC<MarketplaceTabsProps> = ({
   setActiveTab,
   airNodes,
   lendingOptions,
-  myAssets,
   searchQuery,
   setSearchQuery
 }) => {
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-10">
-      <TabsList className="grid grid-cols-3 max-w-md bg-ana-darkblue/50">
+      <TabsList className="grid grid-cols-2 max-w-md bg-ana-darkblue/50">
         <TabsTrigger value="buy" className="flex items-center gap-2">
           <ShoppingCart size={16} />
           Buy AirNodes
@@ -76,10 +57,6 @@ export const MarketplaceTabs: React.FC<MarketplaceTabsProps> = ({
         <TabsTrigger value="lending" className="flex items-center gap-2">
           <Wallet size={16} />
           DeFi Services
-        </TabsTrigger>
-        <TabsTrigger value="myassets" className="flex items-center gap-2">
-          <Coins size={16} />
-          My Assets
         </TabsTrigger>
       </TabsList>
       
@@ -93,10 +70,6 @@ export const MarketplaceTabs: React.FC<MarketplaceTabsProps> = ({
       
       <TabsContent value="lending" className="mt-6">
         <DeFiServicesTab lendingOptions={lendingOptions} />
-      </TabsContent>
-      
-      <TabsContent value="myassets" className="mt-6">
-        <MyAssetsTab myAssets={myAssets} />
       </TabsContent>
     </Tabs>
   );

@@ -1,7 +1,6 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Wallet, LogOut, ChevronDown, Coins, LockKeyhole, ShieldCheck, History } from "lucide-react";
+import { Wallet, LogOut, ChevronDown, Coins, LockKeyhole, ShieldCheck, History, User, UserPlus } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -18,12 +17,8 @@ import { toast } from "sonner";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-
-const MOCK_WALLETS = [
-  { id: "metamask", name: "MetaMask" },
-  { id: "wmc", name: "World Mobile Wallet" },
-  { id: "walletconnect", name: "WalletConnect" },
-];
+import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
 
 interface WalletConnectProps {
   className?: string;
@@ -36,6 +31,14 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
   const [stakeDialogOpen, setStakeDialogOpen] = useState(false);
   const [stakeAmount, setStakeAmount] = useState("");
   const [transactionHistoryOpen, setTransactionHistoryOpen] = useState(false);
+  const [myAssetsDialogOpen, setMyAssetsDialogOpen] = useState(false);
+  const [authDialogOpen, setAuthDialogOpen] = useState(false);
+  const [authTab, setAuthTab] = useState<"login" | "signup">("login");
+  const [loginEmail, setLoginEmail] = useState("");
+  const [loginPassword, setLoginPassword] = useState("");
+  const [signupEmail, setSignupEmail] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const [signupConfirmPassword, setSignupConfirmPassword] = useState("");
 
   // Mock connect function - in real implementation, this would use actual Web3 wallet providers
   const handleConnect = (walletId: string) => {
@@ -65,10 +68,48 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
     setStakeDialogOpen(false);
   };
 
+  const handleLogin = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!loginEmail || !loginPassword) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+    
+    // This would be replaced with actual authentication logic
+    toast.success("Successfully logged in");
+    setAuthDialogOpen(false);
+    setConnected(true);
+  };
+
+  const handleSignup = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!signupEmail || !signupPassword || !signupConfirmPassword) {
+      toast.error("Please fill in all fields");
+      return;
+    }
+    
+    if (signupPassword !== signupConfirmPassword) {
+      toast.error("Passwords do not match");
+      return;
+    }
+    
+    // This would be replaced with actual registration logic
+    toast.success("Account created successfully");
+    setAuthDialogOpen(false);
+    setConnected(true);
+  };
+
   const truncateAddress = (address: string) => {
     if (!address) return "";
     return `${address.substring(0, 6)}...${address.substring(address.length - 4)}`;
   };
+
+  // Mock wallets
+  const MOCK_WALLETS = [
+    { id: "metamask", name: "MetaMask" },
+    { id: "wmc", name: "World Mobile Wallet" },
+    { id: "walletconnect", name: "WalletConnect" },
+  ];
 
   // Mock transaction history
   const mockTransactions = [
@@ -80,41 +121,44 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
   ];
 
   // Mock wallet assets
-  const mockAssets = {
-    ana: 250,
-    shares: [
-      { node: "Portal 180", amount: 2, value: 90 },
-      { node: "Nexus I", amount: 3, value: 225 }
+  const myAssets = {
+    airNodes: [
+      { name: "Portal 180", shares: 3, value: 135, earnings: 7.2, roi: 18.6 },
+      { name: "Nexus I", shares: 2, value: 150, earnings: 7.2, roi: 22.4 }
     ],
-    stakedAna: 150,
-    rewards: 25
+    tokens: {
+      ana: 450,
+      anaStaked: 150,
+      usdc: 125.75
+    },
+    totalValue: 860.75
   };
 
   return (
     <div className={className}>
       {!connected ? (
-        <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Button variant="outline" className="gap-2 bg-ana-darkblue/50 border-ana-purple/30 text-white">
-              <Wallet size={16} />
-              Connect Wallet
-              <ChevronDown size={16} />
-            </Button>
-          </DropdownMenuTrigger>
-          <DropdownMenuContent className="bg-ana-darkblue border-ana-purple/30 text-white">
-            <DropdownMenuLabel>Select Wallet</DropdownMenuLabel>
-            <DropdownMenuSeparator className="bg-ana-purple/20" />
-            {MOCK_WALLETS.map((wallet) => (
-              <DropdownMenuItem
-                key={wallet.id}
-                onClick={() => handleConnect(wallet.id)}
-                className="cursor-pointer hover:bg-ana-purple/20"
-              >
-                {wallet.name}
-              </DropdownMenuItem>
-            ))}
-          </DropdownMenuContent>
-        </DropdownMenu>
+        <div className="flex gap-3">
+          <Button 
+            variant="outline" 
+            className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+            onClick={() => {
+              setAuthTab("login");
+              setAuthDialogOpen(true);
+            }}
+          >
+            <User size={16} className="mr-1" />
+            Log In
+          </Button>
+          <Button
+            onClick={() => {
+              setAuthTab("signup");
+              setAuthDialogOpen(true);
+            }}
+          >
+            <UserPlus size={16} className="mr-1" />
+            Sign Up
+          </Button>
+        </div>
       ) : (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -137,15 +181,15 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
               </DropdownMenuItem>
               <DropdownMenuItem className="flex justify-between cursor-default">
                 <span className="opacity-70">ANA Balance:</span> 
-                <span>{mockAssets.ana} ANA</span>
+                <span>{myAssets.tokens.ana} ANA</span>
               </DropdownMenuItem>
               <DropdownMenuItem className="flex justify-between cursor-default">
                 <span className="opacity-70">Staked ANA:</span> 
-                <span>{mockAssets.stakedAna} ANA</span>
+                <span>{myAssets.tokens.anaStaked} ANA</span>
               </DropdownMenuItem>
               <DropdownMenuItem className="flex justify-between cursor-default">
                 <span className="opacity-70">Pending Rewards:</span> 
-                <span className="text-green-400">{mockAssets.rewards} USDC</span>
+                <span className="text-green-400">{myAssets.tokens.usdc} USDC</span>
               </DropdownMenuItem>
               <DropdownMenuItem className="flex justify-between cursor-default">
                 <span className="opacity-70">Voting Power:</span> 
@@ -156,6 +200,14 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
             <DropdownMenuSeparator className="bg-ana-purple/20" />
             
             <DropdownMenuGroup>
+              <DropdownMenuItem
+                onClick={() => setMyAssetsDialogOpen(true)}
+                className="cursor-pointer hover:bg-ana-purple/20"
+              >
+                <Coins size={16} className="mr-2" />
+                My Assets
+              </DropdownMenuItem>
+              
               <DropdownMenuSub>
                 <DropdownMenuSubTrigger className="cursor-pointer hover:bg-ana-purple/20">
                   <Coins size={16} className="mr-2" />
@@ -198,6 +250,110 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
         </DropdownMenu>
       )}
       
+      {/* Authentication Dialog */}
+      <Dialog open={authDialogOpen} onOpenChange={setAuthDialogOpen}>
+        <DialogContent className="bg-ana-darkblue border-ana-purple/30 text-white max-w-md">
+          <DialogHeader>
+            <DialogTitle>{authTab === "login" ? "Log In" : "Sign Up"}</DialogTitle>
+            <DialogDescription className="text-white/70">
+              {authTab === "login" 
+                ? "Welcome back! Log in to your AirNode Alliance account" 
+                : "Create a new account to join the AirNode Alliance"
+              }
+            </DialogDescription>
+          </DialogHeader>
+          
+          <Tabs value={authTab} onValueChange={(value) => setAuthTab(value as "login" | "signup")} className="w-full">
+            <TabsList className="grid grid-cols-2 mb-4 bg-ana-darkblue/50">
+              <TabsTrigger value="login">Log In</TabsTrigger>
+              <TabsTrigger value="signup">Sign Up</TabsTrigger>
+            </TabsList>
+            
+            <TabsContent value="login">
+              <form onSubmit={handleLogin} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="email">Email</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    value={loginEmail}
+                    onChange={(e) => setLoginEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    id="password"
+                    type="password"
+                    value={loginPassword}
+                    onChange={(e) => setLoginPassword(e.target.value)}
+                    placeholder="********"
+                    className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+                  />
+                </div>
+                
+                <div className="pt-4 flex gap-2 justify-end">
+                  <Button type="button" variant="outline" onClick={() => setAuthDialogOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button type="submit">Log In</Button>
+                </div>
+              </form>
+            </TabsContent>
+            
+            <TabsContent value="signup">
+              <form onSubmit={handleSignup} className="space-y-4">
+                <div className="space-y-2">
+                  <Label htmlFor="signup-email">Email</Label>
+                  <Input
+                    id="signup-email"
+                    type="email"
+                    value={signupEmail}
+                    onChange={(e) => setSignupEmail(e.target.value)}
+                    placeholder="you@example.com"
+                    className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="signup-password">Password</Label>
+                  <Input
+                    id="signup-password"
+                    type="password"
+                    value={signupPassword}
+                    onChange={(e) => setSignupPassword(e.target.value)}
+                    placeholder="********"
+                    className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="confirm-password">Confirm Password</Label>
+                  <Input
+                    id="confirm-password"
+                    type="password"
+                    value={signupConfirmPassword}
+                    onChange={(e) => setSignupConfirmPassword(e.target.value)}
+                    placeholder="********"
+                    className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+                  />
+                </div>
+                
+                <div className="pt-4 flex gap-2 justify-end">
+                  <Button type="button" variant="outline" onClick={() => setAuthDialogOpen(false)}>
+                    Cancel
+                  </Button>
+                  <Button type="submit">Sign Up</Button>
+                </div>
+              </form>
+            </TabsContent>
+          </Tabs>
+        </DialogContent>
+      </Dialog>
+      
       {/* Staking Dialog */}
       <Dialog open={stakeDialogOpen} onOpenChange={setStakeDialogOpen}>
         <DialogContent className="bg-ana-darkblue border-ana-purple/30 text-white max-w-md">
@@ -211,7 +367,7 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
           <div className="space-y-4 py-4">
             <div className="flex justify-between text-sm bg-ana-darkblue/30 p-3 rounded-md">
               <span>Available ANA Balance:</span>
-              <span>{mockAssets.ana} ANA</span>
+              <span>{myAssets.tokens.ana} ANA</span>
             </div>
             
             <div className="space-y-2">
@@ -219,7 +375,7 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
               <Input
                 type="number"
                 min="1"
-                max={mockAssets.ana}
+                max={myAssets.tokens.ana}
                 value={stakeAmount}
                 onChange={(e) => setStakeAmount(e.target.value)}
                 className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
@@ -297,6 +453,123 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
           
           <DialogFooter>
             <Button variant="outline" onClick={() => setTransactionHistoryOpen(false)}>
+              Close
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
+      
+      {/* My Assets Dialog */}
+      <Dialog open={myAssetsDialogOpen} onOpenChange={setMyAssetsDialogOpen}>
+        <DialogContent className="bg-ana-darkblue border-ana-purple/30 text-white max-w-4xl">
+          <DialogHeader>
+            <DialogTitle>My Assets</DialogTitle>
+            <DialogDescription className="text-white/70">
+              View and manage your AirNode Alliance portfolio
+            </DialogDescription>
+          </DialogHeader>
+          
+          <div className="py-4">
+            <Card className="bg-ana-darkblue/30 border-ana-purple/20 p-4 mb-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div>
+                  <h3 className="text-white/60 text-sm">Total Portfolio Value</h3>
+                  <div className="text-2xl font-bold text-white mt-1">${myAssets.totalValue.toFixed(2)}</div>
+                </div>
+                <div>
+                  <h3 className="text-white/60 text-sm">Monthly Earnings</h3>
+                  <div className="text-2xl font-bold text-green-400 mt-1">$14.40</div>
+                </div>
+                <div>
+                  <h3 className="text-white/60 text-sm">Average ROI</h3>
+                  <div className="text-2xl font-bold text-white mt-1">20.2%</div>
+                </div>
+              </div>
+            </Card>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="md:col-span-2">
+                <h2 className="text-xl font-semibold text-white mb-4">My AirNodes</h2>
+                <Card className="bg-ana-darkblue/30 border-ana-purple/20 overflow-hidden">
+                  <table className="w-full">
+                    <thead className="bg-ana-purple/20">
+                      <tr>
+                        <th className="text-left p-4 text-sm font-medium">Node</th>
+                        <th className="text-center p-4 text-sm font-medium">Shares</th>
+                        <th className="text-center p-4 text-sm font-medium">Value</th>
+                        <th className="text-center p-4 text-sm font-medium">Monthly</th>
+                        <th className="text-center p-4 text-sm font-medium">ROI</th>
+                        <th className="text-right p-4 text-sm font-medium">Actions</th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      {myAssets.airNodes.map((node, idx) => (
+                        <tr key={idx} className="border-t border-ana-purple/10">
+                          <td className="p-4">{node.name}</td>
+                          <td className="p-4 text-center">{node.shares}</td>
+                          <td className="p-4 text-center">${node.value}</td>
+                          <td className="p-4 text-center text-green-400">${node.earnings}</td>
+                          <td className="p-4 text-center">{node.roi}%</td>
+                          <td className="p-4 text-right">
+                            <Button variant="outline" size="sm" className="mr-2">Sell</Button>
+                            <Button size="sm">Collateralize</Button>
+                          </td>
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+                </Card>
+              </div>
+              
+              <div>
+                <h2 className="text-xl font-semibold text-white mb-4">Token Holdings</h2>
+                <Card className="bg-ana-darkblue/30 border-ana-purple/20 p-4">
+                  <div className="space-y-4">
+                    <div className="flex justify-between items-center pb-3 border-b border-ana-purple/10">
+                      <div>
+                        <div className="text-lg font-medium text-white">ANA Token</div>
+                        <div className="text-sm text-white/60">Available</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-medium text-white">{myAssets.tokens.ana}</div>
+                        <div className="text-sm text-white/60">${(myAssets.tokens.ana * 0.52).toFixed(2)}</div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center pb-3 border-b border-ana-purple/10">
+                      <div>
+                        <div className="text-lg font-medium text-white">ANA Staked</div>
+                        <div className="text-sm text-white/60">Locked 90 days</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-medium text-white">{myAssets.tokens.anaStaked}</div>
+                        <div className="text-sm text-white/60">${(myAssets.tokens.anaStaked * 0.52).toFixed(2)}</div>
+                      </div>
+                    </div>
+                    
+                    <div className="flex justify-between items-center">
+                      <div>
+                        <div className="text-lg font-medium text-white">USDC</div>
+                        <div className="text-sm text-white/60">Stablecoin</div>
+                      </div>
+                      <div className="text-right">
+                        <div className="text-lg font-medium text-white">{myAssets.tokens.usdc}</div>
+                        <div className="text-sm text-white/60">${myAssets.tokens.usdc}</div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <div className="mt-6 space-y-2">
+                    <Button variant="outline" className="w-full">Stake ANA</Button>
+                    <Button className="w-full">Claim Rewards</Button>
+                  </div>
+                </Card>
+              </div>
+            </div>
+          </div>
+          
+          <DialogFooter>
+            <Button variant="outline" onClick={() => setMyAssetsDialogOpen(false)}>
               Close
             </Button>
           </DialogFooter>

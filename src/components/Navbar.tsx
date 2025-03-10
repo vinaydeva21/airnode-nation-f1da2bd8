@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import Logo from "./Logo";
+import WalletConnect from "./WalletConnect";
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -38,10 +39,7 @@ const Navbar = () => {
               Governance
             </Link>
           </div>
-          <div className="flex gap-3">
-            <Button variant="outline" size="sm">Log In</Button>
-            <Button size="sm">Sign Up</Button>
-          </div>
+          <WalletConnect className="hidden md:block" />
         </div>
 
         {/* Mobile Menu Button */}
@@ -82,9 +80,8 @@ const Navbar = () => {
             >
               Governance
             </Link>
-            <div className="flex gap-3 mt-2">
-              <Button variant="outline" size="sm" className="flex-1">Log In</Button>
-              <Button size="sm" className="flex-1">Sign Up</Button>
+            <div className="pt-2">
+              <WalletConnect />
             </div>
           </div>
         </div>
