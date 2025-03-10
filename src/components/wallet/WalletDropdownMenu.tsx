@@ -13,7 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
-import { Coins, LogOut, ChevronDown, LockKeyhole, ShieldCheck, History } from "lucide-react";
+import { Coins, LogOut, ChevronDown, LockKeyhole, ShieldCheck, History, User } from "lucide-react";
 
 interface WalletMenuProps {
   walletName: string;
@@ -26,6 +26,7 @@ interface WalletMenuProps {
   onAssetsClick: () => void;
   onStakeClick: () => void;
   onHistoryClick: () => void;
+  onProfileClick: () => void;
 }
 
 export const WalletDropdownMenu: React.FC<WalletMenuProps> = ({
@@ -38,7 +39,8 @@ export const WalletDropdownMenu: React.FC<WalletMenuProps> = ({
   onDisconnect,
   onAssetsClick,
   onStakeClick,
-  onHistoryClick
+  onHistoryClick,
+  onProfileClick
 }) => {
   return (
     <DropdownMenu>
@@ -79,6 +81,14 @@ export const WalletDropdownMenu: React.FC<WalletMenuProps> = ({
         <DropdownMenuSeparator className="bg-ana-purple/20" />
         
         <DropdownMenuGroup>
+          <DropdownMenuItem
+            onClick={onProfileClick}
+            className="cursor-pointer hover:bg-ana-purple/20"
+          >
+            <User size={16} className="mr-2" />
+            My Profile
+          </DropdownMenuItem>
+          
           <DropdownMenuItem
             onClick={onAssetsClick}
             className="cursor-pointer hover:bg-ana-purple/20"
