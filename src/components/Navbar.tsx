@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Wallet } from "lucide-react";
 import Logo from "./Logo";
 import WalletConnect from "./WalletConnect";
 
@@ -39,7 +39,19 @@ const Navbar = () => {
               Governance
             </Link>
           </div>
-          <WalletConnect className="hidden md:block" />
+          <Button 
+            variant="outline" 
+            className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+            onClick={() => {
+              const walletConnectElement = document.querySelector('[data-wallet-connect]');
+              if (walletConnectElement) {
+                (walletConnectElement as HTMLElement).click();
+              }
+            }}
+          >
+            <Wallet size={16} className="mr-1" />
+            Connect Wallet
+          </Button>
         </div>
 
         {/* Mobile Menu Button */}
@@ -81,7 +93,20 @@ const Navbar = () => {
               Governance
             </Link>
             <div className="pt-2">
-              <WalletConnect />
+              <Button 
+                variant="outline" 
+                className="w-full bg-ana-darkblue/50 border-ana-purple/30 text-white"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  const walletConnectElement = document.querySelector('[data-wallet-connect]');
+                  if (walletConnectElement) {
+                    (walletConnectElement as HTMLElement).click();
+                  }
+                }}
+              >
+                <Wallet size={16} className="mr-1" />
+                Connect Wallet
+              </Button>
             </div>
           </div>
         </div>

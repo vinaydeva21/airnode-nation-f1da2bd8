@@ -86,32 +86,17 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
     navigate("/dashboard");
   };
 
+  // We're using a data attribute to make it easier to programmatically trigger this component
+  const openAuthDialog = () => {
+    setAuthTab("login");
+    setAuthDialogOpen(true);
+  };
+
   return (
     <div className={className}>
-      {!connected ? (
-        <div className="flex gap-3">
-          <Button 
-            variant="outline" 
-            className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
-            onClick={() => {
-              setAuthTab("login");
-              setAuthDialogOpen(true);
-            }}
-          >
-            <User size={16} className="mr-1" />
-            Log In
-          </Button>
-          <Button
-            onClick={() => {
-              setAuthTab("signup");
-              setAuthDialogOpen(true);
-            }}
-          >
-            <UserPlus size={16} className="mr-1" />
-            Sign Up
-          </Button>
-        </div>
-      ) : (
+      <span data-wallet-connect onClick={openAuthDialog} className="hidden" />
+      
+      {connected && (
         <WalletDropdownMenu
           walletName={MOCK_WALLETS.find(w => w.id === selectedWallet)?.name || "Wallet"}
           address={truncateAddress(walletAddress)}
