@@ -1,4 +1,3 @@
-
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
@@ -18,7 +17,7 @@ const Dashboard = () => {
       owned: 50,
       totalShares: 1000,
       value: 2250,
-      imageUrl: "/lovable-uploads/a87b7206-f007-4408-81b9-e12a3723f7f4.png",
+      imageUrl: "/lovable-uploads/944059d9-4b2a-4ce4-a703-1df8d972e858.png",
     },
     {
       id: "portal-360",
@@ -27,7 +26,7 @@ const Dashboard = () => {
       owned: 25,
       totalShares: 1000,
       value: 1500,
-      imageUrl: "/lovable-uploads/a87b7206-f007-4408-81b9-e12a3723f7f4.png",
+      imageUrl: "/lovable-uploads/b43073b7-44b5-4631-b30f-dc3671d1e301.png",
     },
   ];
 

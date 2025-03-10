@@ -65,7 +65,7 @@ const AirNodeCard: React.FC<AirNodeCardProps> = ({
       <Card className={`overflow-hidden airnode-card transition-all hover:shadow-lg hover:shadow-ana-purple/10 ${className}`}>
         <div className="relative h-48 overflow-hidden">
           <img 
-            src={imageUrl || "/lovable-uploads/a87b7206-f007-4408-81b9-e12a3723f7f4.png"} 
+            src={imageUrl || "/placeholder.svg"} 
             alt={name} 
             className="w-full h-full object-cover transition-transform hover:scale-105 duration-500"
           />

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -22,7 +21,7 @@ const Marketplace = () => {
       name: "Portal 180",
       location: "Nairobi, Kenya",
       price: 45,
-      imageUrl: "/lovable-uploads/a87b7206-f007-4408-81b9-e12a3723f7f4.png",
+      imageUrl: "/lovable-uploads/944059d9-4b2a-4ce4-a703-1df8d972e858.png",
       totalShares: 1000,
       availableShares: 850,
       performance: {
@@ -36,7 +35,7 @@ const Marketplace = () => {
       name: "Portal 360",
       location: "Lagos, Nigeria",
       price: 60,
-      imageUrl: "/lovable-uploads/a87b7206-f007-4408-81b9-e12a3723f7f4.png",
+      imageUrl: "/lovable-uploads/b43073b7-44b5-4631-b30f-dc3671d1e301.png",
       totalShares: 1000,
       availableShares: 600,
       performance: {
@@ -50,7 +49,7 @@ const Marketplace = () => {
       name: "Nexus I",
       price: 75,
       location: "Addis Ababa, Ethiopia",
-      imageUrl: "/lovable-uploads/a87b7206-f007-4408-81b9-e12a3723f7f4.png",
+      imageUrl: "/lovable-uploads/944059d9-4b2a-4ce4-a703-1df8d972e858.png",
       totalShares: 2000,
       availableShares: 1200,
       performance: {
@@ -64,7 +63,7 @@ const Marketplace = () => {
       name: "Nexus II",
       price: 80,
       location: "Kampala, Uganda",
-      imageUrl: "/lovable-uploads/a87b7206-f007-4408-81b9-e12a3723f7f4.png",
+      imageUrl: "/lovable-uploads/b43073b7-44b5-4631-b30f-dc3671d1e301.png",
       totalShares: 2000,
       availableShares: 1800,
       performance: {
@@ -75,7 +74,6 @@ const Marketplace = () => {
     },
   ];
 
-  // Mock data for lending tab
   const lendingOptions = [
     { 
       id: "loan-1", 
@@ -106,7 +104,6 @@ const Marketplace = () => {
     }
   ];
 
-  // Mock data for my assets tab
   const myAssets = {
     airNodes: [
       { name: "Portal 180", shares: 3, value: 135, earnings: 7.2, roi: 18.6 },
@@ -158,7 +155,6 @@ const Marketplace = () => {
             </TabsList>
             
             <TabsContent value="buy" className="mt-6">
-              {/* Search and Filter */}
               <div className="mb-8">
                 <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
                   <div className="relative flex-grow">
@@ -203,7 +199,6 @@ const Marketplace = () => {
                 </form>
               </div>
               
-              {/* Stats Row */}
               <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-8">
                 <Card className="bg-ana-darkblue/30 border-ana-purple/20">
                   <CardContent className="p-4">
@@ -231,14 +226,12 @@ const Marketplace = () => {
                 </Card>
               </div>
               
-              {/* AirNode Grid */}
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
                 {airNodes.map((node) => (
                   <AirNodeCard key={node.id} {...node} />
                 ))}
               </div>
               
-              {/* Pagination (Simplified) */}
               <div className="mt-12 flex justify-center">
                 <div className="flex gap-2">
                   <Button variant="outline" size="sm" disabled>Previous</Button>
