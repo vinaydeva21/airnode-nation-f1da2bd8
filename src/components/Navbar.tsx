@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Wallet } from "lucide-react";
+import { Menu, X, Wallet, User } from "lucide-react";
 import Logo from "./Logo";
 import WalletConnect from "./WalletConnect";
 
@@ -11,6 +11,22 @@ const Navbar = () => {
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
+  };
+
+  const openLoginDialog = () => {
+    const walletConnectElement = document.querySelector('[data-wallet-connect]');
+    if (walletConnectElement) {
+      // Set login mode and click
+      (window as any).authTabMode = "login";
+      (walletConnectElement as HTMLElement).click();
+    }
+  };
+
+  const openWalletConnect = () => {
+    const walletConnectElement = document.querySelector('[data-wallet-connect]');
+    if (walletConnectElement) {
+      (walletConnectElement as HTMLElement).click();
+    }
   };
 
   return (
@@ -39,19 +55,24 @@ const Navbar = () => {
               Governance
             </Link>
           </div>
-          <Button 
-            variant="outline" 
-            className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
-            onClick={() => {
-              const walletConnectElement = document.querySelector('[data-wallet-connect]');
-              if (walletConnectElement) {
-                (walletConnectElement as HTMLElement).click();
-              }
-            }}
-          >
-            <Wallet size={16} className="mr-1" />
-            Connect Wallet
-          </Button>
+          <div className="flex gap-3">
+            <Button 
+              variant="outline" 
+              className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+              onClick={openLoginDialog}
+            >
+              <User size={16} className="mr-1" />
+              Log In
+            </Button>
+            <Button 
+              variant="outline" 
+              className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+              onClick={openWalletConnect}
+            >
+              <Wallet size={16} className="mr-1" />
+              Connect Wallet
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -92,16 +113,24 @@ const Navbar = () => {
             >
               Governance
             </Link>
-            <div className="pt-2">
+            <div className="flex flex-col gap-2 pt-2">
               <Button 
                 variant="outline" 
                 className="w-full bg-ana-darkblue/50 border-ana-purple/30 text-white"
                 onClick={() => {
                   setMobileMenuOpen(false);
-                  const walletConnectElement = document.querySelector('[data-wallet-connect]');
-                  if (walletConnectElement) {
-                    (walletConnectElement as HTMLElement).click();
-                  }
+                  openLoginDialog();
+                }}
+              >
+                <User size={16} className="mr-1" />
+                Log In
+              </Button>
+              <Button 
+                variant="outline" 
+                className="w-full bg-ana-darkblue/50 border-ana-purple/30 text-white"
+                onClick={() => {
+                  setMobileMenuOpen(false);
+                  openWalletConnect();
                 }}
               >
                 <Wallet size={16} className="mr-1" />

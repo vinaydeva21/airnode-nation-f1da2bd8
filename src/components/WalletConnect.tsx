@@ -88,7 +88,13 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
 
   // We're using a data attribute to make it easier to programmatically trigger this component
   const openAuthDialog = () => {
-    setAuthTab("login");
+    // Check if we have a specific mode set
+    if ((window as any).authTabMode === "login") {
+      setAuthTab("login");
+      (window as any).authTabMode = undefined;
+    } else {
+      setAuthTab("login"); // Default to login
+    }
     setAuthDialogOpen(true);
   };
 
