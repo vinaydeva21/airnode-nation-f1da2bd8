@@ -6,8 +6,8 @@ const DashboardHeader: React.FC = () => {
   return (
     <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8">
       <div>
-        <h1 className="text-3xl font-bold text-white">AirNode Alliance Dashboard</h1>
-        <p className="text-white/70">Your personal insights and network overview</p>
+        <h1 className="text-3xl font-bold text-white">Dashboard</h1>
+        <p className="text-white/70">Your personal overview and assets</p>
       </div>
       <Button>
         <Award size={16} className="mr-1" />
