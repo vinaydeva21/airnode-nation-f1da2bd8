@@ -1,7 +1,6 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { User, UserPlus } from "lucide-react";
 import { toast } from "sonner";
 import { AuthDialog } from "./wallet/AuthDialog";
 import { StakingDialog } from "./wallet/StakingDialog";
@@ -60,28 +59,12 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
   return (
     <div className={className}>
       {!connected ? (
-        <div className="flex gap-3">
-          <Button 
-            variant="outline" 
-            className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
-            onClick={() => {
-              setAuthTab("login");
-              setAuthDialogOpen(true);
-            }}
-          >
-            <User size={16} className="mr-1" />
-            Log In
-          </Button>
-          <Button
-            onClick={() => {
-              setAuthTab("signup");
-              setAuthDialogOpen(true);
-            }}
-          >
-            <UserPlus size={16} className="mr-1" />
-            Sign Up
-          </Button>
-        </div>
+        <Button
+          onClick={() => setAuthDialogOpen(true)}
+          className="bg-ana-purple hover:bg-ana-purple/90"
+        >
+          Connect Wallet
+        </Button>
       ) : (
         <WalletDropdownMenu
           walletName={MOCK_WALLETS.find(w => w.id === selectedWallet)?.name || "Wallet"}
