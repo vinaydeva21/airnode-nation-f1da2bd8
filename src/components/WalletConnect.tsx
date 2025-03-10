@@ -1,6 +1,6 @@
-
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
+import { User } from "lucide-react";
 import { toast } from "sonner";
 import { AuthDialog } from "./wallet/AuthDialog";
 import { StakingDialog } from "./wallet/StakingDialog";
@@ -29,9 +29,7 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
   const [authDialogOpen, setAuthDialogOpen] = useState(false);
   const [authTab, setAuthTab] = useState<"login" | "signup">("login");
 
-  // Mock connect function - in real implementation, this would use actual Web3 wallet providers
   const handleConnect = (walletId: string) => {
-    // This would be replaced with actual wallet connection logic
     const mockAddress = generateMockAddress();
     setWalletAddress(mockAddress);
     setConnected(true);
@@ -51,20 +49,31 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
   };
 
   const handleAuthSuccess = () => {
-    // In a real app, this would handle the authentication success flow
-    // For now, we'll simulate connecting with a mock wallet
     handleConnect("metamask");
   };
 
   return (
     <div className={className}>
       {!connected ? (
-        <Button
-          onClick={() => setAuthDialogOpen(true)}
-          className="bg-ana-purple hover:bg-ana-purple/90"
-        >
-          Connect Wallet
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            onClick={() => {
+              setAuthTab("login");
+              setAuthDialogOpen(true);
+            }}
+            className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+          >
+            <User size={16} className="mr-1" />
+            Login
+          </Button>
+          <Button
+            onClick={() => setAuthDialogOpen(true)}
+            className="bg-ana-purple hover:bg-ana-purple/90"
+          >
+            Connect Wallet
+          </Button>
+        </div>
       ) : (
         <WalletDropdownMenu
           walletName={MOCK_WALLETS.find(w => w.id === selectedWallet)?.name || "Wallet"}
@@ -80,7 +89,6 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
         />
       )}
       
-      {/* Authentication Dialog */}
       <AuthDialog
         open={authDialogOpen}
         onOpenChange={setAuthDialogOpen}
@@ -89,21 +97,18 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
         onSuccess={handleAuthSuccess}
       />
       
-      {/* Staking Dialog */}
       <StakingDialog
         open={stakeDialogOpen}
         onOpenChange={setStakeDialogOpen}
         availableAna={DEFAULT_WALLET_ASSETS.tokens.ana}
       />
       
-      {/* Transaction History Dialog */}
       <TransactionHistoryDialog
         open={transactionHistoryOpen}
         onOpenChange={setTransactionHistoryOpen}
         transactions={MOCK_TRANSACTIONS}
       />
       
-      {/* My Assets Dialog */}
       <MyAssetsDialog
         open={myAssetsDialogOpen}
         onOpenChange={setMyAssetsDialogOpen}
