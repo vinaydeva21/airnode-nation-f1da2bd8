@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
@@ -8,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NetworkBackground from "@/components/NetworkBackground";
-import WalletConnect from "@/components/WalletConnect";
 import ProposalForm from "@/components/ProposalForm";
 import { toast } from "sonner";
 import { 
@@ -150,7 +148,6 @@ const Governance = () => {
   
   // Handle voting
   const handleVote = (proposalId: string, voteType: "For" | "Against" | "Abstain") => {
-    // In a real app, this would submit the vote to the blockchain
     setActiveProposals(prevProposals => 
       prevProposals.map(proposal => {
         if (proposal.id === proposalId) {
@@ -171,7 +168,6 @@ const Governance = () => {
       })
     );
     
-    // Record the vote in user's history
     const votedProposal = activeProposals.find(p => p.id === proposalId);
     if (votedProposal) {
       setMyVotes(prev => [
@@ -197,14 +193,10 @@ const Governance = () => {
   
   // Simulated wallet connection effect
   useEffect(() => {
-    // Check if wallet connection UI is shown
     const checkWalletStatus = () => {
-      // In a real application, this would check if the user's wallet is connected
-      // For this demo, we'll just simulate that the wallet is connected
       setIsWalletConnected(true);
     };
     
-    // Wait a moment before checking (simulating network connection)
     const timer = setTimeout(checkWalletStatus, 500);
     return () => clearTimeout(timer);
   }, []);
@@ -221,7 +213,6 @@ const Governance = () => {
               <p className="text-white/70">Shape the future of AirNode Alliance</p>
             </div>
             <div className="flex flex-col sm:flex-row gap-3 mt-4 md:mt-0">
-              <WalletConnect />
               <Button onClick={() => setShowProposalForm(true)} className="flex gap-2">
                 <FileText size={16} />
                 Create Proposal
@@ -582,7 +573,6 @@ const Governance = () => {
         </div>
       </div>
       
-      {/* Proposal Creation Form */}
       <ProposalForm 
         open={showProposalForm} 
         onClose={() => setShowProposalForm(false)}
@@ -595,3 +585,4 @@ const Governance = () => {
 };
 
 export default Governance;
+
