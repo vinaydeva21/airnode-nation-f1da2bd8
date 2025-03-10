@@ -1,7 +1,15 @@
+
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { User } from "lucide-react";
+import { User, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
+import { 
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription
+} from "@/components/ui/dialog";
 import { AuthDialog } from "./wallet/AuthDialog";
 import { StakingDialog } from "./wallet/StakingDialog";
 import { TransactionHistoryDialog } from "./wallet/TransactionHistoryDialog";
