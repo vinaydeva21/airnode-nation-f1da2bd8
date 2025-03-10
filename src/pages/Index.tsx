@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NetworkBackground from "@/components/NetworkBackground";
-import AirNodeCard from "@/components/AirNodeCard";
+import AirNodeCard from "@/components/airnode/AirNodeCard";
 
 const HomePage = () => {
   const upcomingNodes = [

@@ -7,7 +7,7 @@ import { Search, Filter, TrendingUp, ShoppingCart, Wallet, Coins } from "lucide-
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NetworkBackground from "@/components/NetworkBackground";
-import AirNodeCard from "@/components/AirNodeCard";
+import AirNodeCard from "@/components/airnode/AirNodeCard";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { toast } from "sonner";
 
