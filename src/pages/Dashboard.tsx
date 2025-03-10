@@ -7,6 +7,7 @@ import AuthCheck from "@/components/dashboard/AuthCheck";
 import StatsCards from "@/components/dashboard/StatsCards";
 import DashboardHeader from "@/components/dashboard/DashboardHeader";
 import DashboardTabs from "@/components/dashboard/DashboardTabs";
+import PortfolioGrowthChart from "@/components/dashboard/PortfolioGrowthChart";
 
 const Dashboard = () => {
   const userShares = [
@@ -63,6 +64,7 @@ const Dashboard = () => {
           <div className="container mx-auto">
             <DashboardHeader />
             <StatsCards />
+            <PortfolioGrowthChart />
             <DashboardTabs userShares={userShares} recentActivities={recentActivities} />
           </div>
         </div>
