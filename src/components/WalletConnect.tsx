@@ -1,7 +1,7 @@
 
 import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { User, ChevronRight } from "lucide-react";
+import { User, Wallet, ChevronRight } from "lucide-react";
 import { toast } from "sonner";
 import { 
   Dialog,
@@ -15,6 +15,7 @@ import { StakingDialog } from "./wallet/StakingDialog";
 import { TransactionHistoryDialog } from "./wallet/TransactionHistoryDialog";
 import { MyAssetsDialog } from "./wallet/MyAssetsDialog";
 import { WalletDropdownMenu } from "./wallet/WalletDropdownMenu";
+import { WalletSelectionDialog } from "./wallet/WalletSelectionDialog";
 import { 
   MOCK_WALLETS, 
   MOCK_TRANSACTIONS, 
@@ -35,17 +36,27 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
   const [transactionHistoryOpen, setTransactionHistoryOpen] = useState(false);
   const [myAssetsDialogOpen, setMyAssetsDialogOpen] = useState(false);
   const [authDialogOpen, setAuthDialogOpen] = useState(false);
+  const [walletSelectionOpen, setWalletSelectionOpen] = useState(false);
   const [authTab, setAuthTab] = useState<"login" | "signup">("login");
+  const [connecting, setConnecting] = useState(false);
 
   const handleConnect = (walletId: string) => {
-    const mockAddress = generateMockAddress();
-    setWalletAddress(mockAddress);
-    setConnected(true);
-    setSelectedWallet(walletId);
-
-    toast.success(`Connected to ${MOCK_WALLETS.find(w => w.id === walletId)?.name}`, {
-      description: `Address: ${truncateAddress(mockAddress)}`,
-    });
+    setConnecting(true);
+    
+    // Simulate connection delay
+    setTimeout(() => {
+      const mockAddress = generateMockAddress();
+      setWalletAddress(mockAddress);
+      setConnected(true);
+      setSelectedWallet(walletId);
+      setConnecting(false);
+      
+      toast.success(`Connected to ${MOCK_WALLETS.find(w => w.id === walletId)?.name}`, {
+        description: `Address: ${truncateAddress(mockAddress)}`,
+      });
+      
+      setWalletSelectionOpen(false);
+    }, 1500);
   };
 
   const handleDisconnect = () => {
@@ -76,10 +87,21 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
             Login
           </Button>
           <Button
-            onClick={() => setAuthDialogOpen(true)}
+            onClick={() => setWalletSelectionOpen(true)}
             className="bg-ana-purple hover:bg-ana-purple/90"
+            disabled={connecting}
           >
-            Connect Wallet
+            {connecting ? (
+              <>
+                <div className="mr-2 h-4 w-4 animate-spin rounded-full border-2 border-current border-t-transparent"></div>
+                Connecting...
+              </>
+            ) : (
+              <>
+                <Wallet size={16} className="mr-1" />
+                Connect Wallet
+              </>
+            )}
           </Button>
         </div>
       ) : (
@@ -127,6 +149,13 @@ const WalletConnect: React.FC<WalletConnectProps> = ({ className = "" }) => {
           setMyAssetsDialogOpen(false);
           setStakeDialogOpen(true);
         }}
+      />
+
+      <WalletSelectionDialog 
+        open={walletSelectionOpen}
+        onOpenChange={setWalletSelectionOpen}
+        wallets={MOCK_WALLETS}
+        onConnect={handleConnect}
       />
     </div>
   );
