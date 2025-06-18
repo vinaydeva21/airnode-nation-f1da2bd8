@@ -105,10 +105,10 @@ const Marketplace = () => {
       
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto">
-          {/* Header - Dark Section */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">AirNode Marketplace</h1>
-            <p className="text-gray-300">Discover and invest in telecommunications infrastructure</p>
+          {/* Header - White Section */}
+          <div className="mb-8 bg-white rounded-lg p-8">
+            <h1 className="text-3xl font-bold text-black mb-2">AirNode Marketplace</h1>
+            <p className="text-gray-600">Discover and invest in telecommunications infrastructure</p>
           </div>
           
           {/* Marketplace Introduction - White Section */}
@@ -134,15 +134,44 @@ const Marketplace = () => {
             </div>
           </div>
           
+          {/* Marketplace Features - White Section */}
+          <div className="bg-white rounded-lg p-8 mb-8">
+            <h3 className="text-xl font-semibold text-black mb-6">Marketplace Features</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              <div className="text-center p-4 border border-gray-200 rounded-lg">
+                <ShoppingCart className="h-8 w-8 text-black mx-auto mb-2" />
+                <h4 className="font-medium text-black">Buy AirNodes</h4>
+                <p className="text-sm text-gray-600">Purchase fractional shares</p>
+              </div>
+              <div className="text-center p-4 border border-gray-200 rounded-lg">
+                <Wallet className="h-8 w-8 text-black mx-auto mb-2" />
+                <h4 className="font-medium text-black">DeFi Services</h4>
+                <p className="text-sm text-gray-600">Lending and staking options</p>
+              </div>
+              <div className="text-center p-4 border border-gray-200 rounded-lg">
+                <TrendingUp className="h-8 w-8 text-black mx-auto mb-2" />
+                <h4 className="font-medium text-black">Track Performance</h4>
+                <p className="text-sm text-gray-600">Monitor your investments</p>
+              </div>
+              <div className="text-center p-4 border border-gray-200 rounded-lg">
+                <Coins className="h-8 w-8 text-black mx-auto mb-2" />
+                <h4 className="font-medium text-black">Earn Rewards</h4>
+                <p className="text-sm text-gray-600">Monthly passive income</p>
+              </div>
+            </div>
+          </div>
+          
           {/* Marketplace Tabs - Dark Section */}
-          <MarketplaceTabs
-            activeTab={activeTab}
-            setActiveTab={setActiveTab}
-            airNodes={airNodes}
-            lendingOptions={lendingOptions}
-            searchQuery={searchQuery}
-            setSearchQuery={setSearchQuery}
-          />
+          <div className="bg-black/30 backdrop-blur-sm border border-white/20 rounded-lg p-8">
+            <MarketplaceTabs
+              activeTab={activeTab}
+              setActiveTab={setActiveTab}
+              airNodes={airNodes}
+              lendingOptions={lendingOptions}
+              searchQuery={searchQuery}
+              setSearchQuery={setSearchQuery}
+            />
+          </div>
         </div>
       </div>
       

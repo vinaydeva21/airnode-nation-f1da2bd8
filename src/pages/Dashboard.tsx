@@ -30,10 +30,10 @@ const Dashboard = () => {
       
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto">
-          {/* Header - Dark Section */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Dashboard</h1>
-            <p className="text-gray-300">Manage your AirNode portfolio and track performance</p>
+          {/* Header - White Section */}
+          <div className="mb-8 bg-white rounded-lg p-8">
+            <h1 className="text-3xl font-bold text-black mb-2">Dashboard</h1>
+            <p className="text-gray-600">Manage your AirNode portfolio and track performance</p>
           </div>
           
           {/* Portfolio Overview - White Section */}
@@ -70,109 +70,111 @@ const Dashboard = () => {
             </div>
           </div>
 
-          {/* Dashboard Tabs - Dark Section */}
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid grid-cols-4 max-w-2xl bg-black/50 mb-6">
-              <TabsTrigger value="overview" className="flex items-center gap-2">
-                <TrendingUp size={16} />
-                Overview
-              </TabsTrigger>
-              <TabsTrigger value="assets" className="flex items-center gap-2">
-                <Wallet size={16} />
-                My Assets
-              </TabsTrigger>
-              <TabsTrigger value="activity" className="flex items-center gap-2">
-                <Users size={16} />
-                Activity
-              </TabsTrigger>
-              <TabsTrigger value="settings" className="flex items-center gap-2">
-                <Settings size={16} />
-                Settings
-              </TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="overview">
-              {/* My AirNodes - White Section */}
-              <div className="bg-white rounded-lg p-8 mb-8">
-                <h3 className="text-xl font-semibold text-black mb-6">My AirNodes</h3>
-                <div className="overflow-x-auto">
-                  <table className="w-full">
-                    <thead>
-                      <tr className="border-b border-gray-200">
-                        <th className="text-left py-3 text-black">AirNode</th>
-                        <th className="text-center py-3 text-black">Shares</th>
-                        <th className="text-center py-3 text-black">Value</th>
-                        <th className="text-center py-3 text-black">Monthly Earnings</th>
-                        <th className="text-center py-3 text-black">ROI</th>
-                        <th className="text-right py-3 text-black">Actions</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {myAirNodes.map((node, index) => (
-                        <tr key={index} className="border-b border-gray-100">
-                          <td className="py-4 text-black">{node.name}</td>
-                          <td className="py-4 text-center text-black">{node.shares}</td>
-                          <td className="py-4 text-center text-black">${node.value}</td>
-                          <td className="py-4 text-center text-green-600">${node.monthlyEarnings}</td>
-                          <td className="py-4 text-center text-black">{node.roi}%</td>
-                          <td className="py-4 text-right">
-                            <Button variant="outline" size="sm" className="mr-2">
-                              Sell
-                            </Button>
-                            <Button size="sm">
-                              Details
-                            </Button>
-                          </td>
+          {/* Dashboard Tabs - White Section */}
+          <div className="bg-white rounded-lg p-8">
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList className="grid grid-cols-4 max-w-2xl bg-gray-100 mb-6">
+                <TabsTrigger value="overview" className="flex items-center gap-2 text-black data-[state=active]:bg-white data-[state=active]:text-black">
+                  <TrendingUp size={16} />
+                  Overview
+                </TabsTrigger>
+                <TabsTrigger value="assets" className="flex items-center gap-2 text-black data-[state=active]:bg-white data-[state=active]:text-black">
+                  <Wallet size={16} />
+                  My Assets
+                </TabsTrigger>
+                <TabsTrigger value="activity" className="flex items-center gap-2 text-black data-[state=active]:bg-white data-[state=active]:text-black">
+                  <Users size={16} />
+                  Activity
+                </TabsTrigger>
+                <TabsTrigger value="settings" className="flex items-center gap-2 text-black data-[state=active]:bg-white data-[state=active]:text-black">
+                  <Settings size={16} />
+                  Settings
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="overview">
+                {/* My AirNodes - White Section */}
+                <div className="bg-gray-50 rounded-lg p-6 mb-8">
+                  <h3 className="text-xl font-semibold text-black mb-6">My AirNodes</h3>
+                  <div className="overflow-x-auto">
+                    <table className="w-full">
+                      <thead>
+                        <tr className="border-b border-gray-200">
+                          <th className="text-left py-3 text-black">AirNode</th>
+                          <th className="text-center py-3 text-black">Shares</th>
+                          <th className="text-center py-3 text-black">Value</th>
+                          <th className="text-center py-3 text-black">Monthly Earnings</th>
+                          <th className="text-center py-3 text-black">ROI</th>
+                          <th className="text-right py-3 text-black">Actions</th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </table>
+                      </thead>
+                      <tbody>
+                        {myAirNodes.map((node, index) => (
+                          <tr key={index} className="border-b border-gray-100">
+                            <td className="py-4 text-black">{node.name}</td>
+                            <td className="py-4 text-center text-black">{node.shares}</td>
+                            <td className="py-4 text-center text-black">${node.value}</td>
+                            <td className="py-4 text-center text-green-600">${node.monthlyEarnings}</td>
+                            <td className="py-4 text-center text-black">{node.roi}%</td>
+                            <td className="py-4 text-right">
+                              <Button variant="outline" size="sm" className="mr-2 border-black text-black hover:bg-black hover:text-white">
+                                Sell
+                              </Button>
+                              <Button size="sm" className="bg-black text-white hover:bg-gray-800">
+                                Details
+                              </Button>
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
                 </div>
-              </div>
-            </TabsContent>
-            
-            <TabsContent value="assets">
-              <Card className="bg-black/30 border-white/20">
-                <CardHeader>
-                  <CardTitle className="text-white">Asset Management</CardTitle>
-                  <CardDescription className="text-gray-300">
-                    Manage your token holdings and staking positions
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-300">Asset management features coming soon...</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            
-            <TabsContent value="activity">
-              <Card className="bg-black/30 border-white/20">
-                <CardHeader>
-                  <CardTitle className="text-white">Recent Activity</CardTitle>
-                  <CardDescription className="text-gray-300">
-                    Track your recent transactions and earnings
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-300">Activity tracking features coming soon...</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-            
-            <TabsContent value="settings">
-              <Card className="bg-black/30 border-white/20">
-                <CardHeader>
-                  <CardTitle className="text-white">Account Settings</CardTitle>
-                  <CardDescription className="text-gray-300">
-                    Manage your account preferences and notifications
-                  </CardDescription>
-                </CardHeader>
-                <CardContent>
-                  <p className="text-gray-300">Settings panel coming soon...</p>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+              </TabsContent>
+              
+              <TabsContent value="assets">
+                <Card className="bg-gray-50 border-gray-200">
+                  <CardHeader>
+                    <CardTitle className="text-black">Asset Management</CardTitle>
+                    <CardDescription className="text-gray-600">
+                      Manage your token holdings and staking positions
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600">Asset management features coming soon...</p>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              <TabsContent value="activity">
+                <Card className="bg-gray-50 border-gray-200">
+                  <CardHeader>
+                    <CardTitle className="text-black">Recent Activity</CardTitle>
+                    <CardDescription className="text-gray-600">
+                      Track your recent transactions and earnings
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600">Activity tracking features coming soon...</p>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+              
+              <TabsContent value="settings">
+                <Card className="bg-gray-50 border-gray-200">
+                  <CardHeader>
+                    <CardTitle className="text-black">Account Settings</CardTitle>
+                    <CardDescription className="text-gray-600">
+                      Manage your account preferences and notifications
+                    </CardDescription>
+                  </CardHeader>
+                  <CardContent>
+                    <p className="text-gray-600">Settings panel coming soon...</p>
+                  </CardContent>
+                </Card>
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
       </div>
       

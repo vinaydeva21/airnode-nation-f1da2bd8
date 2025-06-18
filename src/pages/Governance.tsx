@@ -96,10 +96,10 @@ const Governance = () => {
       
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto">
-          {/* Header - Dark Section */}
-          <div className="mb-8">
-            <h1 className="text-3xl font-bold text-white mb-2">Governance</h1>
-            <p className="text-gray-300">Participate in DAO governance and shape the future of AirNode Alliance</p>
+          {/* Header - White Section */}
+          <div className="mb-8 bg-white rounded-lg p-8">
+            <h1 className="text-3xl font-bold text-black mb-2">Governance</h1>
+            <p className="text-gray-600">Participate in DAO governance and shape the future of AirNode Alliance</p>
           </div>
           
           {/* Governance Stats - White Section */}
@@ -112,43 +112,45 @@ const Governance = () => {
             />
           </div>
 
-          {/* Governance Tabs - Dark Section */}
-          <Tabs value={activeTab} onValueChange={setActiveTab}>
-            <TabsList className="grid grid-cols-4 max-w-2xl bg-black/50 mb-6">
-              <TabsTrigger value="active" className="flex items-center gap-2">
-                <Vote size={16} />
-                Active
-              </TabsTrigger>
-              <TabsTrigger value="recent" className="flex items-center gap-2">
-                <TrendingUp size={16} />
-                Recent
-              </TabsTrigger>
-              <TabsTrigger value="my-votes" className="flex items-center gap-2">
-                <Users size={16} />
-                My Votes
-              </TabsTrigger>
-              <TabsTrigger value="treasury" className="flex items-center gap-2">
-                <DollarSign size={16} />
-                Treasury
-              </TabsTrigger>
-            </TabsList>
-            
-            <TabsContent value="active">
-              <ActiveProposalsTab proposals={mockActiveProposals} onVote={handleVote} />
-            </TabsContent>
-            
-            <TabsContent value="recent">
-              <RecentProposalsTab proposals={mockRecentProposals} />
-            </TabsContent>
-            
-            <TabsContent value="my-votes">
-              <MyVotesTab votes={mockVotes} />
-            </TabsContent>
-            
-            <TabsContent value="treasury">
-              <TreasuryTab treasuryData={mockTreasuryData} />
-            </TabsContent>
-          </Tabs>
+          {/* Governance Tabs - White Section */}
+          <div className="bg-white rounded-lg p-8">
+            <Tabs value={activeTab} onValueChange={setActiveTab}>
+              <TabsList className="grid grid-cols-4 max-w-2xl bg-gray-100 mb-6">
+                <TabsTrigger value="active" className="flex items-center gap-2 text-black data-[state=active]:bg-white data-[state=active]:text-black">
+                  <Vote size={16} />
+                  Active
+                </TabsTrigger>
+                <TabsTrigger value="recent" className="flex items-center gap-2 text-black data-[state=active]:bg-white data-[state=active]:text-black">
+                  <TrendingUp size={16} />
+                  Recent
+                </TabsTrigger>
+                <TabsTrigger value="my-votes" className="flex items-center gap-2 text-black data-[state=active]:bg-white data-[state=active]:text-black">
+                  <Users size={16} />
+                  My Votes
+                </TabsTrigger>
+                <TabsTrigger value="treasury" className="flex items-center gap-2 text-black data-[state=active]:bg-white data-[state=active]:text-black">
+                  <DollarSign size={16} />
+                  Treasury
+                </TabsTrigger>
+              </TabsList>
+              
+              <TabsContent value="active">
+                <ActiveProposalsTab proposals={mockActiveProposals} onVote={handleVote} />
+              </TabsContent>
+              
+              <TabsContent value="recent">
+                <RecentProposalsTab proposals={mockRecentProposals} />
+              </TabsContent>
+              
+              <TabsContent value="my-votes">
+                <MyVotesTab votes={mockVotes} />
+              </TabsContent>
+              
+              <TabsContent value="treasury">
+                <TreasuryTab treasuryData={mockTreasuryData} />
+              </TabsContent>
+            </Tabs>
+          </div>
         </div>
       </div>
       
