@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { ArrowRight, Shield, TrendingUp, Users, Globe } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -31,51 +30,51 @@ const Index = () => {
               Explore Marketplace
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
-            <Button size="lg" variant="outline" className="border-black text-black hover:bg-black hover:text-white">
+            <Button size="lg" variant="outline" className="border-black text-white bg-black hover:bg-gray-800 hover:text-white">
               Learn More
             </Button>
           </div>
         </div>
       </section>
 
-      {/* Features Section - Dark */}
-      <section className="py-20 px-4">
+      {/* Features Section - White Background */}
+      <section className="py-20 px-4 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
               Why Choose AirNode Alliance?
             </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto">
               Revolutionary infrastructure investment opportunities backed by real-world telecommunications assets
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <Card className="border-white/20 bg-white/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-black/20 bg-black/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader>
-                <Shield className="h-12 w-12 text-white mb-4" />
-                <CardTitle className="text-white">Secure Ownership</CardTitle>
-                <CardDescription className="text-gray-300">
+                <Shield className="h-12 w-12 text-black mb-4" />
+                <CardTitle className="text-black">Secure Ownership</CardTitle>
+                <CardDescription className="text-gray-600">
                   Blockchain-verified fractional ownership of real telecommunications infrastructure
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="border-white/20 bg-white/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-black/20 bg-black/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader>
-                <TrendingUp className="h-12 w-12 text-white mb-4" />
-                <CardTitle className="text-white">Passive Income</CardTitle>
-                <CardDescription className="text-gray-300">
+                <TrendingUp className="h-12 w-12 text-black mb-4" />
+                <CardTitle className="text-black">Passive Income</CardTitle>
+                <CardDescription className="text-gray-600">
                   Earn monthly rewards based on AirNode performance and network usage
                 </CardDescription>
               </CardHeader>
             </Card>
             
-            <Card className="border-white/20 bg-white/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow">
+            <Card className="border-black/20 bg-black/10 backdrop-blur-sm shadow-lg hover:shadow-xl transition-shadow">
               <CardHeader>
-                <Users className="h-12 w-12 text-white mb-4" />
-                <CardTitle className="text-white">Community Governance</CardTitle>
-                <CardDescription className="text-gray-300">
+                <Users className="h-12 w-12 text-black mb-4" />
+                <CardTitle className="text-black">Community Governance</CardTitle>
+                <CardDescription className="text-gray-600">
                   Vote on network decisions and shape the future of decentralized infrastructure
                 </CardDescription>
               </CardHeader>
@@ -108,35 +107,35 @@ const Index = () => {
         </div>
       </section>
 
-      {/* How It Works Section - Dark */}
-      <section className="py-20 px-4">
+      {/* How It Works Section - White Background */}
+      <section className="py-20 px-4 bg-white">
         <div className="container mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-black mb-4">
               How It Works
             </h2>
-            <p className="text-gray-300 max-w-2xl mx-auto">
+            <p className="text-gray-600 max-w-2xl mx-auto">
               Simple steps to start earning from telecommunications infrastructure
             </p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="text-center">
-              <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
-              <h3 className="text-xl font-semibold text-white mb-2">Browse AirNodes</h3>
-              <p className="text-gray-300">Explore our marketplace of verified telecommunications infrastructure</p>
+              <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">1</div>
+              <h3 className="text-xl font-semibold text-black mb-2">Browse AirNodes</h3>
+              <p className="text-gray-600">Explore our marketplace of verified telecommunications infrastructure</p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
-              <h3 className="text-xl font-semibold text-white mb-2">Purchase Shares</h3>
-              <p className="text-gray-300">Buy fractional ownership with our native ANA tokens or stablecoins</p>
+              <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">2</div>
+              <h3 className="text-xl font-semibold text-black mb-2">Purchase Shares</h3>
+              <p className="text-gray-600">Buy fractional ownership with our native ANA tokens or stablecoins</p>
             </div>
             
             <div className="text-center">
-              <div className="w-16 h-16 bg-white text-black rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
-              <h3 className="text-xl font-semibold text-white mb-2">Earn Rewards</h3>
-              <p className="text-gray-300">Receive monthly payments based on AirNode performance and usage</p>
+              <div className="w-16 h-16 bg-black text-white rounded-full flex items-center justify-center text-2xl font-bold mx-auto mb-4">3</div>
+              <h3 className="text-xl font-semibold text-black mb-2">Earn Rewards</h3>
+              <p className="text-gray-600">Receive monthly payments based on AirNode performance and usage</p>
             </div>
           </div>
         </div>
