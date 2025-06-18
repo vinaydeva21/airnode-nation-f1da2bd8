@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { TrendingUp, ShoppingCart, Wallet, Coins } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -104,8 +105,36 @@ const Marketplace = () => {
       
       <div className="pt-24 pb-20 px-4">
         <div className="container mx-auto">
-          <h1 className="text-3xl font-bold text-white mb-8">AirNode Marketplace</h1>
+          {/* Header - Dark Section */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-white mb-2">AirNode Marketplace</h1>
+            <p className="text-gray-300">Discover and invest in telecommunications infrastructure</p>
+          </div>
           
+          {/* Marketplace Introduction - White Section */}
+          <div className="bg-white rounded-lg p-8 mb-8">
+            <h2 className="text-2xl font-bold text-black mb-4">Welcome to the Marketplace</h2>
+            <p className="text-gray-600 mb-6">
+              Explore our curated selection of AirNode investments and DeFi services. Each AirNode represents 
+              real telecommunications infrastructure generating revenue from network usage.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              <div className="text-center p-4 border border-gray-200 rounded-lg">
+                <div className="text-2xl font-bold text-black">24</div>
+                <div className="text-gray-600">Active AirNodes</div>
+              </div>
+              <div className="text-center p-4 border border-gray-200 rounded-lg">
+                <div className="text-2xl font-bold text-green-600">19.8%</div>
+                <div className="text-gray-600">Average ROI</div>
+              </div>
+              <div className="text-center p-4 border border-gray-200 rounded-lg">
+                <div className="text-2xl font-bold text-black">$0.52</div>
+                <div className="text-gray-600">ANA Token Price</div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Marketplace Tabs - Dark Section */}
           <MarketplaceTabs
             activeTab={activeTab}
             setActiveTab={setActiveTab}
