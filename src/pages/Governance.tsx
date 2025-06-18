@@ -5,14 +5,90 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import NetworkBackground from "@/components/NetworkBackground";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { ActiveProposalsTab } from "@/components/governance/ActiveProposalsTab";
-import { RecentProposalsTab } from "@/components/governance/RecentProposalsTab";
-import { MyVotesTab } from "@/components/governance/MyVotesTab";
-import { TreasuryTab } from "@/components/governance/TreasuryTab";
-import { GovernanceStats } from "@/components/governance/GovernanceStats";
+import ActiveProposalsTab from "@/components/governance/ActiveProposalsTab";
+import RecentProposalsTab from "@/components/governance/RecentProposalsTab";
+import MyVotesTab from "@/components/governance/MyVotesTab";
+import TreasuryTab from "@/components/governance/TreasuryTab";
+import GovernanceStats from "@/components/governance/GovernanceStats";
 
 const Governance = () => {
   const [activeTab, setActiveTab] = useState("active");
+
+  // Mock data for demonstration
+  const mockStats = {
+    activeProposals: 3,
+    participationRate: 67,
+    votingPower: 1250
+  };
+
+  const mockActiveProposals = [
+    {
+      id: "1",
+      title: "Increase AirNode Coverage in Urban Areas",
+      description: "Proposal to expand AirNode deployment in major metropolitan areas to improve network coverage.",
+      votesFor: 1200,
+      votesAgainst: 450,
+      abstain: 100,
+      totalVotes: 1750,
+      threshold: 60,
+      endTime: "2 days left",
+      status: "Active" as const,
+      category: "Infrastructure"
+    }
+  ];
+
+  const mockRecentProposals = [
+    {
+      id: "2", 
+      title: "Treasury Allocation for Q2 2024",
+      description: "Quarterly treasury fund allocation proposal.",
+      votesFor: 2100,
+      votesAgainst: 300,
+      totalVotes: 2400,
+      threshold: 60,
+      endTime: "Ended March 15, 2024",
+      status: "Passed" as const,
+      category: "Treasury"
+    }
+  ];
+
+  const mockVotes = [
+    {
+      proposalId: "2",
+      proposalTitle: "Treasury Allocation for Q2 2024", 
+      vote: "For" as const,
+      timestamp: new Date("2024-03-12")
+    }
+  ];
+
+  const mockTreasuryData = {
+    totalBalance: 2500000,
+    allocation: {
+      newAirNodes: 40,
+      rewards: 35, 
+      operations: 15,
+      reserve: 10
+    },
+    recentTransactions: [
+      {
+        id: "1",
+        description: "AirNode deployment rewards",
+        amount: 50000,
+        date: "2024-03-15"
+      },
+      {
+        id: "2", 
+        description: "Network operations",
+        amount: -15000,
+        date: "2024-03-14"
+      }
+    ]
+  };
+
+  const handleVote = (proposalId: string, voteType: "For" | "Against" | "Abstain") => {
+    console.log(`Voting ${voteType} on proposal ${proposalId}`);
+    // Handle voting logic here
+  };
 
   return (
     <NetworkBackground>
@@ -29,7 +105,11 @@ const Governance = () => {
           {/* Governance Stats - White Section */}
           <div className="bg-white rounded-lg p-8 mb-8">
             <h2 className="text-2xl font-bold text-black mb-6">Governance Overview</h2>
-            <GovernanceStats />
+            <GovernanceStats 
+              activeProposals={mockStats.activeProposals}
+              participationRate={mockStats.participationRate}
+              votingPower={mockStats.votingPower}
+            />
           </div>
 
           {/* Governance Tabs - Dark Section */}
@@ -54,19 +134,19 @@ const Governance = () => {
             </TabsList>
             
             <TabsContent value="active">
-              <ActiveProposalsTab />
+              <ActiveProposalsTab proposals={mockActiveProposals} onVote={handleVote} />
             </TabsContent>
             
             <TabsContent value="recent">
-              <RecentProposalsTab />
+              <RecentProposalsTab proposals={mockRecentProposals} />
             </TabsContent>
             
             <TabsContent value="my-votes">
-              <MyVotesTab />
+              <MyVotesTab votes={mockVotes} />
             </TabsContent>
             
             <TabsContent value="treasury">
-              <TreasuryTab />
+              <TreasuryTab treasuryData={mockTreasuryData} />
             </TabsContent>
           </Tabs>
         </div>
