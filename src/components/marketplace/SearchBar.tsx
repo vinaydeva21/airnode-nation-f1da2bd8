@@ -26,17 +26,17 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuer
         <Input 
           type="text" 
           placeholder="Search AirNodes..." 
-          className="pl-10 bg-ana-darkblue/50 border-ana-purple/20 text-white"
+          className="pl-10 bg-black/50 border-white/20 text-white"
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
         />
       </div>
       <div className="flex gap-4">
         <Select defaultValue="all">
-          <SelectTrigger className="w-[180px] bg-ana-darkblue/50 border-ana-purple/20 text-white">
+          <SelectTrigger className="w-[180px] bg-black/50 border-white/20 text-white">
             <SelectValue placeholder="Status" />
           </SelectTrigger>
-          <SelectContent className="bg-ana-darkblue border-ana-purple/20 text-white">
+          <SelectContent className="bg-black border-white/20 text-white">
             <SelectItem value="all">All Status</SelectItem>
             <SelectItem value="active">Active</SelectItem>
             <SelectItem value="upcoming">Upcoming</SelectItem>
@@ -44,10 +44,10 @@ export const SearchBar: React.FC<SearchBarProps> = ({ searchQuery, setSearchQuer
           </SelectContent>
         </Select>
         <Select defaultValue="roi">
-          <SelectTrigger className="w-[180px] bg-ana-darkblue/50 border-ana-purple/20 text-white">
+          <SelectTrigger className="w-[180px] bg-black/50 border-white/20 text-white">
             <SelectValue placeholder="Sort By" />
           </SelectTrigger>
-          <SelectContent className="bg-ana-darkblue border-ana-purple/20 text-white">
+          <SelectContent className="bg-black border-white/20 text-white">
             <SelectItem value="roi">Highest ROI</SelectItem>
             <SelectItem value="price-low">Price: Low to High</SelectItem>
             <SelectItem value="price-high">Price: High to Low</SelectItem>

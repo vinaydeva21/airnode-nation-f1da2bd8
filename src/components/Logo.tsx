@@ -16,17 +16,17 @@ const Logo: React.FC<LogoProps> = ({ size = 40, className = "" }) => {
       }}
     >
       <div 
-        className="absolute inset-0 rounded-full bg-gradient-to-br from-ana-purple via-ana-pink to-ana-blue animate-pulse-slow"
+        className="absolute inset-0 rounded-full bg-gradient-to-br from-white via-gray-400 to-gray-600 animate-pulse-slow"
         style={{ 
           filter: "blur(8px)",
           opacity: 0.7
         }}
       />
       <div 
-        className="absolute inset-1 rounded-full bg-gradient-to-br from-ana-purple to-ana-pink overflow-hidden flex items-center justify-center"
+        className="absolute inset-1 rounded-full bg-gradient-to-br from-white to-gray-300 overflow-hidden flex items-center justify-center"
       >
-        <div className="w-3/4 h-3/4 rounded-full bg-ana-darkblue flex items-center justify-center">
-          <div className="w-1/2 h-1/2 rounded-full bg-gradient-to-br from-ana-blue to-ana-purple" />
+        <div className="w-3/4 h-3/4 rounded-full bg-black flex items-center justify-center">
+          <div className="w-1/2 h-1/2 rounded-full bg-gradient-to-br from-gray-400 to-white" />
         </div>
       </div>
     </div>

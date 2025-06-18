@@ -35,7 +35,7 @@ export const NodeCollateralizeDialog: React.FC<NodeCollateralizeProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-ana-darkblue border-ana-purple/30 text-white max-w-md">
+      <DialogContent className="bg-black border-white/30 text-white max-w-md">
         <DialogHeader>
           <DialogTitle>Collateralize {node.name} Shares</DialogTitle>
           <DialogDescription className="text-white/70">
@@ -52,13 +52,13 @@ export const NodeCollateralizeDialog: React.FC<NodeCollateralizeProps> = ({
               max={5}
               value={shareAmount}
               onChange={(e) => setShareAmount(parseInt(e.target.value) || 1)}
-              className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+              className="bg-black/50 border-white/30 text-white"
             />
           </div>
           
           <div className="space-y-2">
             <label className="text-sm text-white/70">Maximum Loan Value (70% LTV)</label>
-            <div className="p-2 bg-ana-darkblue/30 border border-ana-purple/20 rounded text-right font-semibold">
+            <div className="p-2 bg-black/30 border border-white/20 rounded text-right font-semibold">
               ${(node.price * shareAmount * 0.7).toFixed(2)} USDC
             </div>
           </div>
@@ -71,18 +71,18 @@ export const NodeCollateralizeDialog: React.FC<NodeCollateralizeProps> = ({
               max={(node.price * shareAmount * 0.7).toFixed(2)}
               value={loanAmount}
               onChange={(e) => setLoanAmount(e.target.value)}
-              className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+              className="bg-black/50 border-white/30 text-white"
             />
           </div>
           
           <div className="space-y-2">
             <label className="text-sm text-white/70">Interest Rate</label>
-            <div className="p-2 bg-ana-darkblue/30 border border-yellow-500/20 rounded text-right font-semibold">
+            <div className="p-2 bg-black/30 border border-white/20 rounded text-right font-semibold">
               4.5% APR
             </div>
           </div>
           
-          <div className="p-3 bg-yellow-500/10 border border-yellow-500/30 rounded-md text-yellow-500 text-sm">
+          <div className="p-3 bg-white/10 border border-white/30 rounded-md text-white text-sm">
             <strong>Note:</strong> If the LTV exceeds 85% due to price fluctuations, your collateral may be liquidated.
           </div>
         </div>
@@ -92,7 +92,7 @@ export const NodeCollateralizeDialog: React.FC<NodeCollateralizeProps> = ({
             Cancel
           </Button>
           <Button 
-            className="bg-yellow-500 hover:bg-yellow-600"
+            className="bg-white text-black hover:bg-gray-200"
             onClick={handleCollateralize}
           >
             Request Loan

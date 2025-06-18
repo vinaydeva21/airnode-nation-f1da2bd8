@@ -49,7 +49,7 @@ export const MarketplaceTabs: React.FC<MarketplaceTabsProps> = ({
 }) => {
   return (
     <Tabs value={activeTab} onValueChange={setActiveTab} className="mb-10">
-      <TabsList className="grid grid-cols-2 max-w-md bg-ana-darkblue/50">
+      <TabsList className="grid grid-cols-2 max-w-md bg-black/50">
         <TabsTrigger value="buy" className="flex items-center gap-2">
           <ShoppingCart size={16} />
           Buy AirNodes

@@ -36,7 +36,7 @@ export const NodePurchaseDialog: React.FC<NodePurchaseProps> = ({
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="bg-ana-darkblue border-ana-purple/30 text-white max-w-md">
+      <DialogContent className="bg-black border-white/30 text-white max-w-md">
         <DialogHeader>
           <DialogTitle>Purchase {node.name} Shares</DialogTitle>
           <DialogDescription className="text-white/70">
@@ -53,20 +53,20 @@ export const NodePurchaseDialog: React.FC<NodePurchaseProps> = ({
               max={node.availableShares}
               value={shareAmount}
               onChange={(e) => setShareAmount(parseInt(e.target.value) || 1)}
-              className="bg-ana-darkblue/50 border-ana-purple/30 text-white"
+              className="bg-black/50 border-white/30 text-white"
             />
           </div>
           
           <div className="space-y-2">
             <label className="text-sm text-white/70">Total Cost</label>
-            <div className="p-2 bg-ana-darkblue/30 border border-ana-purple/20 rounded text-right font-semibold">
+            <div className="p-2 bg-black/30 border border-white/20 rounded text-right font-semibold">
               ${(node.price * shareAmount).toFixed(2)}
             </div>
           </div>
           
           <div className="space-y-2">
             <label className="text-sm text-white/70">Estimated Monthly Earnings</label>
-            <div className="p-2 bg-ana-darkblue/30 border border-green-500/20 rounded text-right font-semibold text-green-400">
+            <div className="p-2 bg-black/30 border border-white/20 rounded text-right font-semibold text-white">
               +${(node.performance.earnings * shareAmount).toFixed(2)}/month
             </div>
           </div>

@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { TrendingUp, ShoppingCart, Wallet, Coins } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -77,7 +76,7 @@ const Marketplace = () => {
       apy: "4.5%",
       ltv: "70%",
       term: "1-12 months",
-      icon: <Wallet className="h-10 w-10 text-ana-purple" />
+      icon: <Wallet className="h-10 w-10 text-white" />
     },
     { 
       id: "loan-2", 
@@ -86,7 +85,7 @@ const Marketplace = () => {
       apy: "16%",
       ltv: "N/A",
       term: "Flexible",
-      icon: <Coins className="h-10 w-10 text-green-400" />
+      icon: <Coins className="h-10 w-10 text-white" />
     },
     { 
       id: "loan-3", 
@@ -95,7 +94,7 @@ const Marketplace = () => {
       apy: "12%",
       ltv: "N/A",
       term: "30/90/180 days",
-      icon: <TrendingUp className="h-10 w-10 text-blue-400" />
+      icon: <TrendingUp className="h-10 w-10 text-white" />
     }
   ];
 
