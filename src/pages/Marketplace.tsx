@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { TrendingUp, ShoppingCart, Wallet, Coins } from "lucide-react";
 import Navbar from "@/components/Navbar";
@@ -16,7 +15,7 @@ const Marketplace = () => {
       name: "Portal 180",
       location: "Nairobi, Kenya",
       price: 45,
-      imageUrl: "/lovable-uploads/944059d9-4b2a-4ce4-a703-1df8d972e858.png",
+      imageUrl: "/lovable-uploads/78b9f6e7-7cb9-4dde-bf66-626db696648e.png",
       totalShares: 1000,
       availableShares: 850,
       performance: {
@@ -30,7 +29,7 @@ const Marketplace = () => {
       name: "Portal 360",
       location: "Lagos, Nigeria",
       price: 60,
-      imageUrl: "/lovable-uploads/b43073b7-44b5-4631-b30f-dc3671d1e301.png",
+      imageUrl: "/lovable-uploads/ef6746ba-fca0-41a8-9d07-a5c6be9b39be.png",
       totalShares: 1000,
       availableShares: 600,
       performance: {
@@ -40,11 +39,11 @@ const Marketplace = () => {
       }
     },
     {
-      id: "nexus-1",
-      name: "Nexus I",
+      id: "apex-90",
+      name: "Apex 90",
       price: 75,
       location: "Addis Ababa, Ethiopia",
-      imageUrl: "/lovable-uploads/944059d9-4b2a-4ce4-a703-1df8d972e858.png",
+      imageUrl: "/lovable-uploads/bc07f14e-3203-4583-bb34-75f3df7cd404.png",
       totalShares: 2000,
       availableShares: 1200,
       performance: {
@@ -54,11 +53,11 @@ const Marketplace = () => {
       }
     },
     {
-      id: "nexus-2",
-      name: "Nexus II",
+      id: "apex-180",
+      name: "Apex 180",
       price: 80,
       location: "Kampala, Uganda",
-      imageUrl: "/lovable-uploads/b43073b7-44b5-4631-b30f-dc3671d1e301.png",
+      imageUrl: "/lovable-uploads/085aaa1a-3bf1-45a6-a24d-6a133c1b27fe.png",
       totalShares: 2000,
       availableShares: 1800,
       performance: {
@@ -67,6 +66,34 @@ const Marketplace = () => {
         roi: 20.1
       }
     },
+    {
+      id: "titan",
+      name: "Titan",
+      price: 95,
+      location: "Cairo, Egypt",
+      imageUrl: "/lovable-uploads/ab0fd33f-b255-4496-a801-bb79f6998fa2.png",
+      totalShares: 1500,
+      availableShares: 900,
+      performance: {
+        uptime: 99.5,
+        earnings: 4.1,
+        roi: 24.3
+      }
+    },
+    {
+      id: "link",
+      name: "Link",
+      price: 55,
+      location: "Accra, Ghana",
+      imageUrl: "/lovable-uploads/42174bda-cb41-437d-a558-07fd1577f8ee.png",
+      totalShares: 1200,
+      availableShares: 750,
+      performance: {
+        uptime: 98.3,
+        earnings: 2.8,
+        roi: 17.9
+      }
+    }
   ];
 
   const lendingOptions = [
